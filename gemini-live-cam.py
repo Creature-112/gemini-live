@@ -29,6 +29,9 @@ from google.genai import types
 from dotenv import load_dotenv
 import os
 
+from PIL import Image
+import numpy as np
+
 load_dotenv()
 
 FORMAT = pyaudio.paInt16
@@ -138,19 +141,19 @@ class AudioLoop:
     def _get_screen(self):
         sct = mss.mss()
         monitor = sct.monitors[0]
-
         i = sct.grab(monitor)
 
-        mime_type = "image/jpeg"
-        image_bytes = i.rgb  # Directly use the RGB data from the screen capture
-        img = PIL.Image.open(io.BytesIO(image_bytes))
+        
+        img = Image.frombytes('RGB', i.size, i.rgb)
+
+        img.thumbnail((1024, 1024)) 
 
         image_io = io.BytesIO()
         img.save(image_io, format="jpeg")
         image_io.seek(0)
 
         image_bytes = image_io.read()
-        return {"mime_type": mime_type, "data": base64.b64encode(image_bytes).decode()}
+        return {"mime_type": "image/jpeg", "data": base64.b64encode(image_bytes).decode()}
 
     async def get_screen(self):
 

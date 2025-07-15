@@ -1,16 +1,3 @@
-"""
-## Documentation
-Quickstart: https://github.com/google-gemini/cookbook/blob/main/quickstarts/Get_started_LiveAPI.py
-
-## Setup
-
-To install the dependencies for this script, run:
-
-```
-pip install google-genai opencv-python pyaudio pillow mss python-dotenv
-```
-"""
-
 import asyncio
 import base64
 import io
@@ -21,13 +8,13 @@ import pyaudio
 import PIL.Image
 import mss
 
-import argparse
-
 from google import genai
 from google.genai import types
 
 from dotenv import load_dotenv
 import os
+
+from PySide6.QtCore import QObject, Signal
 
 load_dotenv()
 
@@ -64,8 +51,11 @@ CONFIG = types.LiveConnectConfig(
 pya = pyaudio.PyAudio()
 
 
-class AudioLoop:
+class AudioLoop(QObject):
+    new_text = Signal(str)
+
     def __init__(self, video_mode=DEFAULT_MODE):
+        super().__init__()
         self.video_mode = video_mode
 
         self.audio_in_queue = asyncio.Queue()
@@ -73,27 +63,8 @@ class AudioLoop:
 
         self.session = None  # Will be initialized in the run method
 
-        self.send_text_task = None
         self.receive_audio_task = None
         self.play_audio_task = None
-
-    async def send_text(self):
-        while True:
-            text = await asyncio.to_thread(
-                input,
-                "message > ",
-            )
-            if text.lower() == "q":
-                break
-            if self.session is not None:
-                await self.session.send_client_content(
-                    turns=types.Content(
-                        role="user",
-                        parts=[types.Part(text=text or ".")]
-                    )
-                )
-            else:
-                print("Session is not initialized. Unable to send text.")
 
     def _get_frame(self, cap):
         # Read the frameq
@@ -197,7 +168,6 @@ class AudioLoop:
         "Background task to reads from the websocket and write pcm chunks to the output queue"
         while True:
             if self.session is None:
-                print("Session is not initialized. Unable to receive data.")
                 await asyncio.sleep(1)  # Prevent tight loop if session is not ready
                 continue
 
@@ -207,7 +177,7 @@ class AudioLoop:
                     self.audio_in_queue.put_nowait(data)
                     continue
                 if text := response.text:
-                    print(text, end="")
+                    self.new_text.emit(text)
 
             # If you interrupt the model, it sends a turn_complete.
             # For interruptions to work, we need to stop playback.
@@ -239,7 +209,6 @@ class AudioLoop:
                 self.audio_in_queue = asyncio.Queue()
                 self.out_queue = asyncio.Queue(maxsize=5)
 
-                send_text_task = tg.create_task(self.send_text())
                 tg.create_task(self.send_realtime())
                 tg.create_task(self.listen_audio())
                 if self.video_mode == "camera":
@@ -250,25 +219,9 @@ class AudioLoop:
                 tg.create_task(self.receive_audio())
                 tg.create_task(self.play_audio())
 
-                await send_text_task
-                raise asyncio.CancelledError("User requested exit")
-
         except asyncio.CancelledError:
             pass
         except ExceptionGroup as EG:
-            self.audio_stream.close()
+            if self.audio_stream:
+                self.audio_stream.close()
             traceback.print_exception(EG)
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--mode",
-        type=str,
-        default=DEFAULT_MODE,
-        help="pixels to stream from",
-        choices=["camera", "screen", "none"],
-    )
-    args = parser.parse_args()
-    main = AudioLoop(video_mode=args.mode)
-    asyncio.run(main.run())

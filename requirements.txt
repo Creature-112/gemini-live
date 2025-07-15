@@ -3,6 +3,5 @@ opencv-python
 pyaudio
 pillow
 mss
-streamlit
-streamlit-webrtc
 python-dotenv
+PySide6

